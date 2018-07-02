@@ -12,15 +12,16 @@ numpy==1.14.3
 Keras==2.2.0
 tensorflow==1.6.0
 scipy==1.1.0
+scikit-learn==0.19.1
 ```
 3. Install setuptools using pip to setup this python library to be able to import from anywhere in the system. (Also ensure that you install ths latest version)
-'''
+```
 pip install setuptools
-'''
+```
 4. Run this command to make this library system-wide
-'''
+```
 python setup.py install
-'''
+```
 
 ## How to use this library
 ### Models
