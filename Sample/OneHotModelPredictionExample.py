@@ -1,5 +1,5 @@
 import numpy as np
-from MHCSeqNet.PredictionModel import BindingOneHotPredictor
+from MHCSeqNet.PredictionModel.BindingOnehotPredictor import BindingOneHotPredictor
 
 # Sample data to predict
 sample_data = np.array([['TYIGSLPGK', 'HLA-B*58:01'],

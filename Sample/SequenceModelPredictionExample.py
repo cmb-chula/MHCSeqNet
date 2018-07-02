@@ -1,5 +1,4 @@
 import numpy as np
-
 from MHCSeqNet.PredictionModel.BindingSequencePredictor import BindingSequencePredictor
 
 # Sample data to predict
