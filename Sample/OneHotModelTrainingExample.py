@@ -1,6 +1,6 @@
 import pandas as pd
 
-from MHCSeqNet.PredictionModel import BindingOneHotPredictor
+from MHCSeqNet.PredictionModel import BindingOnehotPredictor
 
 allele_to_train = ["HLA-A*01:01","HLA-A*02:01","HLA-A*02:02","HLA-A*02:03","HLA-A*02:04","HLA-A*02:05","HLA-A*02:06",
                    "HLA-A*02:07","HLA-A*02:11","HLA-A*02:17","HLA-A*03:01","HLA-A*11:01","HLA-A*23:01","HLA-A*24:02",
@@ -24,8 +24,8 @@ df = df.replace(to_replace='Positive', value=1.0)
 df = df.replace(to_replace='Positive-High', value=1.0)
 df = df.replace(to_replace='Negative', value=0.0)
 
-bindingOneHotPredictor = BindingOneHotPredictor()
-bindingOneHotPredictor.train_model('Models/one_hot_model_example/',
+bindingOnehotPredictor = BindingOnehotPredictor()
+bindingOnehotPredictor.train_model('Models/one_hot_model_example/',
                                    df.peptide.values,
                                    df.allele.values,
                                    df.binding_quality.values,

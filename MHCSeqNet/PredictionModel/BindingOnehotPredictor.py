@@ -1,14 +1,14 @@
-from PredictionModel.BindingPredictor import BindingPredictor
-from PredictionModel.Utility.DataProcessingUtility import DataProcessingUtility
+from MHCSeqNet.PredictionModel.BindingPredictor import BindingPredictor
+from MHCSeqNet.PredictionModel.Utility.DataProcessingUtility import DataProcessingUtility
 from MHCSeqNet.PredictionModel.Utility.OnehotBasedModel import OnehotBasedModel
 
 
 # A class used for training and predicting binding probability using one-hot based model. The example of the usage of
-# this class can be found in Sample/OneHotModelTrainingExample.py
-class BindingOneHotPredictor(BindingPredictor):
+# this class can be found in Sample/OnehotModelTrainingExample.py
+class BindingOnehotPredictor(BindingPredictor):
 
     def __init__(self):
-        super(BindingOneHotPredictor, self).__init__()
+        super(BindingOnehotPredictor, self).__init__()
 
     def create_model_for_training(self,
                                   output_model_path,

@@ -8,7 +8,7 @@ import setuptools
 # )
 
 setup(
-    name="BindingPredictor",
+    name="MHCSeqNet",
     version="0.1",
     #author="Example Author",
     #author_email="author@example.com",

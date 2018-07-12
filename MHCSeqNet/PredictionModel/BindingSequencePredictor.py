@@ -1,7 +1,7 @@
 import numpy as np
-from PredictionModel.Utility.AllelePrimarySequenceManager import AllelePrimarySequenceManager
-from PredictionModel.Utility.DataProcessingUtility import DataProcessingUtility
-from PredictionModel.Utility.SequenceBasedModel import SequenceBasedModel
+from MHCSeqNet.PredictionModel.Utility.AllelePrimarySequenceManager import AllelePrimarySequenceManager
+from MHCSeqNet.PredictionModel.Utility.DataProcessingUtility import DataProcessingUtility
+from MHCSeqNet.PredictionModel.Utility.SequenceBasedModel import SequenceBasedModel
 
 from MHCSeqNet.PredictionModel.BindingPredictor import BindingPredictor
 

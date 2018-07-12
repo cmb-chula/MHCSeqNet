@@ -1,5 +1,5 @@
 import numpy as np
-from MHCSeqNet.PredictionModel.BindingOnehotPredictor import BindingOneHotPredictor
+from MHCSeqNet.PredictionModel.BindingOnehotPredictor import BindingOnehotPredictor
 
 # Sample data to predict
 sample_data = np.array([['TYIGSLPGK', 'HLA-B*58:01'],
@@ -9,13 +9,13 @@ sample_data = np.array([['TYIGSLPGK', 'HLA-B*58:01'],
                         ['TWLVNSAAHLF', 'HLA-A*24:02']])
 
 # Initialize model instance
-bindingOneHotPredictor = BindingOneHotPredictor()
+bindingOnehotPredictor = BindingOnehotPredictor()
 
 # Load model from path. Please replace [path to project] to the path to the root of this project in your machine.
-bindingOneHotPredictor.load_model('[path to project]/Neoantigen-Predictor/PredictionModel/Pretrained Models/one_hot_model/')
+bindingOnehotPredictor.load_model('[path ot project]/Neoantigen-Predictor/MHCSeqNet/PredictionModel/Pretrained Models/one_hot_model/')
 
 # Predict binding probability in the pair of a peptide and an MHC allele.
-result = bindingOneHotPredictor.predict(peptides=sample_data[:, 0],
+result = bindingOnehotPredictor.predict(peptides=sample_data[:, 0],
                                         alleles=sample_data[:, 1])
 
 print(result)

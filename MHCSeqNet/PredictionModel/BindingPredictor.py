@@ -1,7 +1,7 @@
 import os
 
 import numpy as np
-from PredictionModel.Utility.EmbeddingLayerManager import EmbeddingLayerManager
+from MHCSeqNet.PredictionModel.Utility.EmbeddingLayerManager import EmbeddingLayerManager
 from keras.callbacks import EarlyStopping
 from keras.models import load_model
 from sklearn.model_selection import KFold
