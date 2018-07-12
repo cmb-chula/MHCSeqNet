@@ -46,6 +46,6 @@ PredictionModel/Pretrained Models/sequence_model/supported_alleles.txt
 
 ### Sample
 Sample scripts of how to use MHCSeqNet to predict binding probability is in sample/
-  - For prediction using one-hot based model, follow an example in ```sample/OneHotModelPredictionExample.py```
+  - For prediction using one-hot based model, follow an example in ```sample/OnehotModelPredictionExample.py```
   - For prediction using sequence based model, follow an example in ```sample/SequenceModelPredictionExample.py```
 There're also additional samples for training a model but it's not yet thoroughly tested so please use with caution.
