@@ -19,7 +19,7 @@ scikit-learn==0.19.1
 pip install setuptools
 pip3 install setuptools
 ```
-4. Run setup.
+4. Run Setup.py to install MHCSeqNet.
 ```
 python Setup.py install
 python3 Setup.py install
