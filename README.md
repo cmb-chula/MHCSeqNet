@@ -14,13 +14,15 @@ tensorflow==1.6.0
 scipy==1.1.0
 scikit-learn==0.19.1
 ```
-3. Install setuptools using pip to setup MHCSeqNet to be able to import system-wide. (Also ensure that you install ths latest version)
+3. Install setuptools using pip (if your system's default Python is Python3) or pip3 to setup MHCSeqNet to be able to import system-wide. (Also ensure that you install ths latest version)
 ```
 pip install setuptools
+pip3 install setuptools
 ```
 4. Run setup.
 ```
-python setup.py install
+python Setup.py install
+python3 Setup.py install
 ```
 
 ## How to use MHCSeqNet
