@@ -1,52 +1,86 @@
-# MHCSeqNet
+## What is MHCSeqNet?
 
-MHCSeqNet is a MHC ligand prediction python package. Current release was trained using only MHC class I data but we have demonstrated that the model architecture of MHCSeqNet can generalize to MHC class II data (https://www.biorxiv.org/content/early/2018/07/18/371591).
+MHCSeqNet is a MHC ligand prediction python package developed by the [Computational Molecular Biology Group](http://cmb.md.chula.ac.th/) at Chulalongkorn University, Bangkok, Thailand. MHCSeqNet utilizes recurrent neural networks to process input ligand's and MHC allele's amino acid sequences and therefore can be to extended to handle peptide of any length and any MHC allele with known amino acid sequence. 
 
-## Installation (From Source)
-MHCSeqNet supports only Python 3.4+.
-We have plan to make MHCSeqNet available via 'pip install' but for now installing from source is the only way.
-1. Clone this repository 
-2. MHCSeqNet is developed using these exact version of external packages. We cannot guarantee if MHCSeqNet works on older version of these packages.
-```
-numpy==1.14.3
-Keras==2.2.0
-tensorflow==1.6.0
-scipy==1.1.0
-scikit-learn==0.19.1
-```
-3. Install setuptools using pip (if your system's default Python is Python3) or pip3 (if your system contains both Python2 and Python3 and the default is Python2) to setup MHCSeqNet to be able to import system-wide. (Also ensure that you install the latest version)
-```
-pip install setuptools
-pip3 install setuptools
-```
-4. Run Setup.py to install MHCSeqNet.
-```
-python Setup.py install
-python3 Setup.py install
-```
+**These details may be subject to changes:** The current release was trained using only data from MHC class I and from peptides ranging from 8 to 15 amino acids in length, but the model can be adapted to support more alleles and wider ranges of peptide length. 
 
-## How to use MHCSeqNet
+Please see our [preprint on bioRxiv](https://www.biorxiv.org/content/early/2018/11/08/371591) for more information.
+
 ### Models
-There are two version of the models.
-- One-hot based model: This model supports only a limited set of MHC alleles that are present in the training dataset. The full list of the supported alleles can be found in 
+MHCSeqNet offers two versions of prediction models
+1. One-hot model: This model uses data from each MHC allele to train a separate predictor for that allele. The list of supported MHC alleles for the current release can be found [here](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/one_hot_model/supported_alleles.txt) 
+
+2. Sequence-based model: This model use data from all MHC alleles to train a single predictor that can handle any MHC allele whose amino acid sequence is known. For more information on how our model learns MHC allele information in the form of amino acid sequence, please see our [preprint on bioRxiv](https://www.biorxiv.org/content/early/2018/11/08/371591). The list of MHC alleles used to train this model can be found [here](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Pretrained%20Models/sequence_model/supported_alleles.txt)
+
+## How to install?
+MHCSeqNet requires Python 3 (>= 3.4) and the following Python packages:
 ```
-PredictionModel/Pretrained Models/one_hot_model/supported_alleles.txt
+numpy (>= 1.14.3)
+Keras (>= 2.2.0)
+tensorflow (>= 1.6.0)
+scipy (>= 1.1.0)
+scikit-learn (>= 0.19.1)
 ```
-- Sequence based model: This model is trained on the same set of alleles as one-hot based model but is able to predict any MHC alleles as long as the amino acid sequence is known. Please consult our preprint The full list of known MHC allele sequences can be found in
+If your system has both Python 2 and Python 3, please make sure that Python 3 is being used when following these instructions.
+Note that we cannot guarantee whether MHCSeqNet will work with older versions of these packages.
+
+To install MHCSeqNet:
+1. Clone this repository
 ```
-PredictionModel/Pretrained Models/sequence_model/supported_alleles.txt
+git clone https://github.com/cmbcu/MHCSeqNet
+```
+Or you may find other methods for cloning a GitHub repository [here](https://help.github.com/articles/cloning-a-repository/)
+
+2. Install the latest version of 'pip' and 'setuptools' packages for Python 3 if your system does not already have them
+```
+python -m ensurepip --default-pip
+pip install setuptools
+```
+If you have trouble with this step, more information can be found [here](https://packaging.python.org/tutorials/installing-packages/#install-pip-setuptools-and-wheel)
+
+3. Run Setup.py inside MHCSeqNet directory to install MHCSeqNet.
+```
+cd MHCSeqNet
+python Setup.py install
 ```
 
-### Input
-- Peptide: We supports peptide of length 8 - 15 consisted of these amino acids:
+## How to use MHCSeqNet?
+We are in the process of making MHCSeqNet more user-friendly. For now, some basic understanding of computer programming is required to adjust our sample scripts for personal uses.
+
+### Examples
+Sample scripts for running MHCSeqNet in either the 'one-hot' mode or 'sequence-based' can be found in the 'Sample' directory.
+Continuing from the installation process, you may test the installation of MHCSeqNet through the following commands:
 ```
-'A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', and 'Y'.
+python Sample/OnehotModelPredictionExample.py
+python Sample/SequenceModelPredictionExample.py
 ```
-- MHC Protein: As described above, there are two version of the models supporting different set of MHC allele.
+
+To run the sample scripts from different locations on your system, please edit the path to pretrained model in the respective script.
+```
+bindingOnehotPredictor.load_model('./MHCSeqNet/PredictionModel/Pretrained Models/one_hot_model/')
+bindingSequencePredictor.load_model('./MHCSeqNet/PredictionModel/Pretrained Models/sequence_model/')
+```
+
+To replace sample peptides and MHC alleles with your own lists, please edit the 'sample_data' accordingly.
+```
+sample_data = np.array([['TYIGSLPGK', 'HLA-B*58:01'],
+                        ['TYIHALDNGLF', 'HLA-A*24:02'],
+                        ['AAAWICGEF', 'HLA-B*15:01'],
+                        ['TWLTYHGAI', 'HLA-A*30:02'],
+                        ['TWLVNSAAHLF', 'HLA-A*24:02']])
+```
+
+To adjust the behavior of how prediction results are output (e.g. print results to file rather than on the screen), please edit the following line:
+```
+print(result)
+```
+
+### Input format
+Peptide: The current release supports peptides of length 8 - 15 and does not accept ambiguous amino acids.
+
+MHC allele: For alleles included in the training set (i.e. supported alleles listed in the [models](https://github.com/cmbcu/MHCSeqNet#models) section), the model requires the 'HLA-A\*XX:YY' format. 
+
+**These details may be subject to changes:** For the sequence-based model, the amino acid sequences of new MHC alleles must first be added to the [database](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Utility/AlleleInformation.txt).
+
 ### Output
-- Binding probability: Rather than binding affinity, these models predict binding probability ranging from 0.0 to 1.0 where 0.0 indicates a non-binder and 1.0 indicates a strong binder.
-
-### Sample
-Sample scripts of how to use MHCSeqNet to predict binding probability is in sample/
-  - For prediction using one-hot based model, follow an example in ```sample/OnehotModelPredictionExample.py```
-  - For prediction using sequence based model, follow an example in ```sample/SequenceModelPredictionExample.py```
+MHCSeqNet output binding probability ranging from 0.0 to 1.0 where 0.0 indicates an unlikely ligand and 1.0 indicates a likely ligand.
