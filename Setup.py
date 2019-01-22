@@ -1,12 +1,6 @@
 from setuptools import setup
 import setuptools
 
-# setup(
-#     name='BindingPredictor',
-#     version='0.1',
-#     scripts=['BindingPredictor']
-# )
-
 setup(
     name="MHCSeqNet",
     version="1.0",
@@ -17,6 +11,7 @@ setup(
     #long_description_content_type="text/markdown",
     url="https://github.com/cmbcu/MHCSeqNet/",
     packages=setuptools.find_packages(),
+    zip_safe=False,
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
