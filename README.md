@@ -2,7 +2,7 @@
 
 MHCSeqNet is a MHC ligand prediction python package developed by the [Computational Molecular Biology Group](http://cmb.md.chula.ac.th/) at Chulalongkorn University, Bangkok, Thailand. MHCSeqNet utilizes recurrent neural networks to process input ligand's and MHC allele's amino acid sequences and therefore can be to extended to handle peptide of any length and any MHC allele with known amino acid sequence. 
 
-**These details may be subject to changes:** The current release was trained using only data from MHC class I and from peptides ranging from 8 to 15 amino acids in length, but the model can be adapted to support more alleles and wider ranges of peptide length. 
+The current release was trained using only data from MHC class I and supports peptides ranging from 8 to 15 amino acids in length, but the model can be re-trained to support more alleles and wider ranges of peptide length. 
 
 Please see our [preprint on bioRxiv](https://www.biorxiv.org/content/early/2018/11/08/371591) for more information.
 
@@ -80,7 +80,7 @@ Peptide: The current release supports peptides of length 8 - 15 and does not acc
 
 MHC allele: For alleles included in the training set (i.e. supported alleles listed in the [models](https://github.com/cmbcu/MHCSeqNet#models) section), the model requires the 'HLA-A\*XX:YY' format. 
 
-**These details may be subject to changes:** For the sequence-based model, the amino acid sequences of new MHC alleles must first be added to the [database](https://github.com/cmbcu/MHCSeqNet/blob/master/MHCSeqNet/PredictionModel/Utility/AlleleInformation.txt).
+To add new MHC alleles to the sequence-based model, the names and amino acid sequences of the new alleles must first be added to the [AlleleInformation.txt and supported_alleles.txt](https://github.com/cmbcu/MHCSeqNet/tree/master/MHCSeqNet/PredictionModel/Pretrained%20Models/sequence_model) in the sequence-based model's directory.
 
 ### Output
 MHCSeqNet output binding probability ranging from 0.0 to 1.0 where 0.0 indicates an unlikely ligand and 1.0 indicates a likely ligand.
