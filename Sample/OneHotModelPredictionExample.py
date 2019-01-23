@@ -12,7 +12,7 @@ sample_data = np.array([['TYIGSLPGK', 'HLA-B*58:01'],
 bindingOnehotPredictor = BindingOnehotPredictor()
 
 # Load model from path. Please replace [path to project] to the path to the root of this project in your machine.
-bindingOnehotPredictor.load_model('./MHCSeqNet/PredictionModel/Pretrained Models/one_hot_model/')
+bindingOnehotPredictor.load_model('./PretrainedModels/one_hot_model/')
 
 # Predict binding probability in the pair of a peptide and an MHC allele.
 result = bindingOnehotPredictor.predict(peptides=sample_data[:, 0],
