@@ -45,9 +45,29 @@ python Setup.py install
 ```
 
 ## How to use MHCSeqNet?
-We are in the process of making MHCSeqNet more user-friendly. For now, some basic understanding of computer programming is required to adjust our sample scripts for personal uses.
+MHCSeqNet can be launched through the MHCSeqNet.py script or by editing sample scripts explained below
 
-### Examples
+### MHCSeqNet.py
+The instruction on how to use the MHCSeqNet.py script can be found by running:
+```
+python MHCSeqNet.py -h
+
+usage: python MHCSeqNet.py [options] peptide_file allele_file output_file
+         'peptide_file' and 'allele_file' should each contains only one column, without header row
+  options:
+    -p, --path                             REQUIRED: Speficy the path to pre-trained model directory
+                                           This should be either the 'one_hot_model' or the 'sequence_model'
+                                            directory located in 'PATH/PretrainedModels/' where PATH is where
+                                            MHCSeqNet was downloaded to
+    -m, --model        [onehot sequence]   REQUIRED: Specify whether the one-hot model or sequence-based model will be used
+    -i, --input-mode   [paired complete]   REQUIRED: Specify whether the prediction should be made for each pair of peptide
+                                            and allele on the same row of each input file [paired] or for all
+                                            combinations of peptides and alleles [complete]
+    -h, --help                             Print this message
+```
+Sample peptide and MHC allele files can be found in the 'Sample' directory
+
+### Sample scripts
 Sample scripts for running MHCSeqNet in either the 'one-hot' mode or 'sequence-based' can be found in the 'Sample' directory.
 Continuing from the installation process, you may test the installation of MHCSeqNet through the following commands:
 ```
