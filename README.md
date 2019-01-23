@@ -57,8 +57,8 @@ python Sample/SequenceModelPredictionExample.py
 
 To run the sample scripts from different locations on your system, please edit the path to pretrained model in the respective script.
 ```
-bindingOnehotPredictor.load_model('./MHCSeqNet/PredictionModel/Pretrained Models/one_hot_model/')
-bindingSequencePredictor.load_model('./MHCSeqNet/PredictionModel/Pretrained Models/sequence_model/')
+bindingOnehotPredictor.load_model('./PretrainedModels/one_hot_model/')
+bindingSequencePredictor.load_model('./PretrainedModels/sequence_model/')
 ```
 
 To replace sample peptides and MHC alleles with your own lists, please edit the 'sample_data' accordingly.
@@ -84,3 +84,6 @@ To add new MHC alleles to the sequence-based model, the names and amino acid seq
 
 ### Output
 MHCSeqNet output binding probability ranging from 0.0 to 1.0 where 0.0 indicates an unlikely ligand and 1.0 indicates a likely ligand.
+
+## How to re-train MHCSeqNet?
+This feature and instruction will be added in the future
