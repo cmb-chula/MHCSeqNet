@@ -29,4 +29,4 @@ bindingOnehotPredictor.train_model('Models/one_hot_model_example/',
                                    df.peptide.values,
                                    df.allele.values,
                                    df.binding_quality.values,
-                                   amino_acid_representation_path="../AminoAcidRepresentationModel/Model/Dummy_Model.h5")
+                                   amino_acid_representation_path="../AminoAcidRepresentationModel/Model/embedding_weight_merged_5_d6.h5")
