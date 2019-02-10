@@ -1,6 +1,6 @@
 import pandas as pd
 
-from MHCSeqNet.PredictionModel import BindingOnehotPredictor
+from MHCSeqNet.PredictionModel.BindingOnehotPredictor import BindingOnehotPredictor
 
 allele_to_train = ["HLA-A*01:01","HLA-A*02:01","HLA-A*02:02","HLA-A*02:03","HLA-A*02:04","HLA-A*02:05","HLA-A*02:06",
                    "HLA-A*02:07","HLA-A*02:11","HLA-A*02:17","HLA-A*03:01","HLA-A*11:01","HLA-A*23:01","HLA-A*24:02",
@@ -17,7 +17,7 @@ allele_to_train = ["HLA-A*01:01","HLA-A*02:01","HLA-A*02:02","HLA-A*02:03","HLA-
                    "HLA-C*05:01","HLA-C*06:02","HLA-C*07:01","HLA-C*07:02","HLA-C*08:01","HLA-C*08:02","HLA-C*15:02",
                    "HLA-C*16:01"]
 
-df = pd.read_csv('[path to data]')
+df = pd.read_csv('MHCSeqNet/PredictionModel/Data/mhc_ligand_NP_20171025_cleaned.csv')
 df = df[df.allele.isin(allele_to_train)]
 
 df = df.replace(to_replace='Positive', value=1.0)
@@ -29,4 +29,4 @@ bindingOnehotPredictor.train_model('Models/one_hot_model_example/',
                                    df.peptide.values,
                                    df.allele.values,
                                    df.binding_quality.values,
-                                   amino_acid_representation_path="../AminoAcidRepresentationModel/Model/embedding_weight_merged_5_d6.h5")
+                                   amino_acid_representation_path="MHCSeqNet/AminoAcidRepresentationModel/Model/embedding_weight_merged_5_d6.h5")

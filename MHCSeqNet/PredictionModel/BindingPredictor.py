@@ -117,6 +117,15 @@ class BindingPredictor:
 
         np.random.shuffle([peptides_converted, alleles_converted, labels_converted])
 
+        try:
+            for model in self.models:
+                EmbeddingLayerManager.load_embedded_weight(model,
+                                                           amino_acid_representation_path,
+                                                           configuration['embedded_dim'],
+                                                           len(self.utility.get_acceptable_amino_acid()))
+        except OSError:
+            raise OSError("Cannot load peptide representation")
+
         kf = KFold(n_splits=configuration['num_model'])
         fold_index = 1
         for train_indexes, test_indexes in kf.split(peptides_converted):
@@ -129,29 +138,21 @@ class BindingPredictor:
                                               labels_training_converted)
 
             print("Loading peptide representation")
-            try:
-                for model in self.models:
-                    EmbeddingLayerManager.load_embedded_weight(model,
-                                                               amino_acid_representation_path,
-                                                               configuration['embedded_dim'],
-                                                               len(self.utility.get_acceptable_amino_acid()))
-            except OSError:
-                raise OSError("Cannot load peptide representation")
             print("Peptide representation loaded")
             early_stopper = EarlyStopping(monitor='val_loss',
                                           min_delta=0,
                                           patience=7,
                                           verbose=2, mode='auto')
             callbacks = [early_stopper]
-            model.fit(X,
-                      y,
-                      epochs=configuration['max_num_epoch'],
-                      shuffle=True,
-                      validation_split=0.2,
-                      batch_size=1024,
-                      callbacks=callbacks,
-                      verbose=1)
-            model.save(output_model_path + "/model_%d.h5" % fold_index)
+            self.models[fold_index - 1].fit(X,
+                                      y,
+                                      epochs=configuration['max_num_epoch'],
+                                      shuffle=True,
+                                      validation_split=0.2,
+                                      batch_size=1024,
+                                      callbacks=callbacks,
+                                      verbose=1)
+            self.models[fold_index - 1].save(output_model_path + "/model_%d.h5" % fold_index)
             fold_index += 1
 
     def get_supported_alleles(self):
@@ -177,10 +178,11 @@ class BindingPredictor:
         labels = []
         for _ in peptides:
             labels.append(0.0)
+        # print(peptides_converted, alleles_converted, labels_converted)
         peptides_converted, alleles_converted, labels_converted = self.utility.process_data(peptides=peptides,
                                                                                             alleles=alleles,
                                                                                             labels=labels)
-
+        print(peptides_converted, alleles_converted, labels_converted)
         X, y = self.prepare_training_data(peptides_converted,
                                           alleles_converted,
                                           labels_converted)
